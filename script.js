@@ -6,7 +6,6 @@ async function fetchViewers(channel) {
     const data = await response.json();
     const viewers = data?.livestream?.viewer_count ?? 0;
 
-    document.getElementById("channel-name").textContent = channel;
     document.getElementById("viewer-count").textContent = `👁 ${viewers}`;
   } catch (error) {
     document.getElementById("viewer-count").textContent = "Erro 😢";
@@ -26,7 +25,3 @@ function startCounter() {
 }
 
 startCounter();
-// Exibe o nome do canal no título da página
-document.title = `Contador de Visualizações - ${getChannelFromURL()}`;
-// Exibe o nome do canal no elemento de título
-document.getElementById("channel-name").textContent = getChannelFromURL();
