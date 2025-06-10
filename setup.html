@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gerador de Widget Kick</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 50px 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 18px;
+    }
+    input {
+      width: 300px;
+    }
+    #output {
+      margin-top: 20px;
+      background: #222;
+      padding: 10px;
+      border-radius: 6px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gerador de Widget contador de views para Kick</h1>
+  <p>Digite o nome do seu canal e receba o link para usar no OBS.</p>
+
+  <input type="text" id="channel" placeholder="ex: gaules" />
+  <button onclick="generateLink()">Gerar Link</button>
+
+  <div id="output" style="display: none;">
+    <p>URL para usar no OBS:</p>
+    <code id="url"></code>
+    <br>
+    <button onclick="copyToClipboard()">Copiar URL</button>
+  </div>
+  <footer style="margin-top: 50px; text-align: center;">
+    <p>Feito por <a href="https://www.github.com/ejunior89" target="_blank">Elio Junior</a> | <a href="https://kick.com/ejunior1914" target="_blank">Kick</a></p>
+
+  <script>
+    const baseURL = "https://SEUNOME.github.io/view-counter/";
+
+    function generateLink() {
+      const canal = document.getElementById("channel").value.trim().toLowerCase();
+      if (!canal) return alert("Digite o nome do canal!");
+      const url = `${baseURL}?channel=${canal}`;
+      document.getElementById("url").textContent = url;
+      document.getElementById("output").style.display = "block";
+    }
+
+    function copyToClipboard() {
+      const text = document.getElementById("url").textContent;
+      navigator.clipboard.writeText(text)
+        .then(() => alert("URL copiada para a área de transferência!"))
+        .catch(err => alert("Erro ao copiar: " + err));
+    }
+  </script>
+</body>
+</html>
